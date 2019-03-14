@@ -1,0 +1,14 @@
+.ct-series-c .ct-slice-pie, .ct-series-c .ct-area{
+    fill: #FFA534 !important;
+}
+.t-series-c .ct-slice-pie, .ct-series-c .ct-area {
+    fill: #FFA534 !important;
+}
+.ct-area{
+    stroke: none !important;
+    fill-opacity: 0.8 !important;
+}
+.ct-label{
+    font-size: 1.7rem !important;
+}
+

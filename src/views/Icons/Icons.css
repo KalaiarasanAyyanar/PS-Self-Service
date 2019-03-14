@@ -1,0 +1,26 @@
+.ssss{
+    background-color: white !important;
+    border:none !important;
+    outline:none;
+    
+    width:0px !important
+
+}
+.left22{
+    padding-left:0px !important;
+    margin-left:0px !important;
+    
+  }
+.left11{
+    padding-left:0px !important;
+    padding-right:0px !important;
+    margin-right: 0px !important;
+  }
+th{
+      width:100px !important;
+      padding-left:10px !important;
+      padding-right:0px !important;
+      margin-left:0px !important;
+      margin-right:0px !important;
+
+  }

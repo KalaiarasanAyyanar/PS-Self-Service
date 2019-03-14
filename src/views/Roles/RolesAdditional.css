@@ -1,0 +1,46 @@
+.btn-info.btn-link {
+    border-color: transparent !important;
+    background-color: transparent !important;
+    
+}
+
+.btn-warning.btn-link {
+    border-color: transparent !important;
+    background-color: transparent !important;
+}
+.btn-danger.btn-link {
+    border-color: transparent !important;
+    background-color: transparent !important;
+}
+.pagination {
+    display: inline-block;
+  }
+  .pagination a {
+    color: black;
+    
+    padding: 8px 16px; 
+    text-decoration: none;
+  }
+  
+  .pagination a.active {
+    background-color: #23CCEF;
+    color: white;
+    border-radius: 50%;
+  }
+  
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+  }
+  ::placeholder {
+    color:black;
+    opacity: 0.1; /* Firefox */
+  }
+  .rose{
+      background-color: white !important;
+      transition-duration: 0.4s;
+  }
+  .rose:hover{
+      background-color: #888888 !important;
+      color:white !important;
+  }

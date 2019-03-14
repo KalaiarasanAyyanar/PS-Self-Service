@@ -1,0 +1,45 @@
+.titleCard{
+    font-size: 22px !important;
+    font-weight: 500 !important;
+}
+h4{
+    margin:0px !important; 
+}
+.cardTable{
+    width:80px;
+ padding-right:0px !important;
+}
+.cardImages{
+    padding:0px !important;
+}
+.cardItems{
+    padding-left: 0px !important;
+    width: 180px;
+    float:left;
+}
+.cardPoint{
+    padding-left:0px !important;
+    width: 100px;
+    text-align-last: right;
+    float:left;
+}
+.cardPercentage{
+    padding-left:0px !important;
+    float:left;
+    width:120px;
+    text-align-last: right;
+}
+.tableBody{
+    width:900px !important;
+}
+.imageMapCard{
+    padding:100px;
+}
+.tableRowCard{
+    width:500px !important;
+    /* color:rgb(255, 255, 255); */
+}
+.vectorMapCard{
+    padding-top:0px;
+    padding-left:10px !important;
+}

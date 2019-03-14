@@ -1,0 +1,8 @@
+.custom a{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+/* .nav-open>body>.root>.wrapper>.sidebar>.sidebar-wrapper>ul .nav >div>ul .nav>li .custom{ */
+   .nav-open{
+    width:100% !important;
+}
