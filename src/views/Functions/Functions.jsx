@@ -3,7 +3,8 @@ import { Grid, Row, Col, Table } from "react-bootstrap";
 import Card from "components/Card/Card.jsx";
 import swal from '@sweetalert/with-react'
 import OptionsForEdit from "../../components/OptionsForEdit/OptionsForEdit.jsx";
-import axios from 'axios'
+import axios from 'axios';
+let rolesData=[];
 class Functions extends Component {
   constructor(props) {
     super(props);
@@ -19,9 +20,10 @@ class Functions extends Component {
     this.sortBy.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     axios.get(`http://localhost:3300`)
       .then(res => {
+        rolesData=res.data.rolesData;
         console.log("printing", res.data)
         this.setState({
           functionsData: res.data.functionsData,
@@ -116,21 +118,21 @@ class Functions extends Component {
     }
   }
 
-  
-  update(key,selectID1,selectID2) {
-    console.log("receive-->>",key,selectID1,selectID2)
-    let updateValue1=document.getElementById(selectID1);
-    updateValue1=updateValue1.options[updateValue1.selectedIndex].value
-    let updateValue2=document.getElementById(selectID2);
-    updateValue2=updateValue2.options[updateValue2.selectedIndex].value
+
+  update(key, selectID1, selectID2) {
+    console.log("receive-->>", key, selectID1, selectID2)
+    let updateValue1 = document.getElementById(selectID1);
+    updateValue1 = updateValue1.options[updateValue1.selectedIndex].value
+    let updateValue2 = document.getElementById(selectID2);
+    updateValue2 = updateValue2.options[updateValue2.selectedIndex].value
     // console.log("eee--->>>",e.options[e.selectedIndex].value);
     swal({
       title: "Updated",
       text: "The function is updated",
       icon: "success",
-      
+
     });
-    axios.get('http://localhost:3300/update/functions/'+key+'/'+updateValue1+'/'+updateValue2).then(
+    axios.get('http://localhost:3300/update/functions/' + key + '/' + updateValue1 + '/' + updateValue2).then(
       res => {
         console.log("delete->", res.data.functionsData)
         this.setState({
@@ -198,20 +200,20 @@ class Functions extends Component {
   }
 
   displayedit = (key) => {
-    let getElementIDs=["table11","table22"];
+    let getElementIDs = ["table11", "table22"];
     swal(
       <div>
         <h5 style={{ color: "grey", fontSize: "30px", paddingTop: "20px", textAlign: "left", paddingBottom: "10px" }}>Add Function</h5>
         <h5 style={{ textAlign: "left" }}>Role&nbsp;<span style={{ color: "red" }}>*</span></h5>
-        <OptionsForEdit array={this.state.functionsData} position={1} idForChild={getElementIDs[0]}></OptionsForEdit>
+        <OptionsForEdit array={rolesData} position={1} idForChild={getElementIDs[0]}></OptionsForEdit>
         <h5 style={{ textAlign: "left" }}>Function&nbsp;<span style={{ color: "red" }}>*</span></h5>
         <OptionsForEdit array={this.state.functionsData} position={2} idForChild={getElementIDs[1]}></OptionsForEdit>
-        <button className="outer" className="btn " style={{ float: "left", color: "white", backgroundColor: "#7cd1f9", marginTop: "30px", outline: "none", border: "none", marginBottom: "20px", width: "120px" }} onClick={()=>{this.update(key,getElementIDs[0],getElementIDs[1])}}>save</button>
+        <button className="outer" className="btn " style={{ float: "left", color: "white", backgroundColor: "#7cd1f9", marginTop: "30px", outline: "none", border: "none", marginBottom: "20px", width: "120px" }} onClick={() => { this.update(key, getElementIDs[0], getElementIDs[1]) }}>save</button>
         <button className="inner" className="btn btn-danger" style={{ float: "right", color: "white", backgroundColor: "#fa1825", marginTop: "30px", marginBottom: "20px", width: "120px" }} onClick={this.canceled}>cancel</button>
       </div>, {
         buttons: false,
       }
-      )
+    )
   }
 
   render() {
@@ -232,7 +234,7 @@ class Functions extends Component {
 
                     <div className="dropdown" style={{ display: "inline" }}>
                       &nbsp;&nbsp;&nbsp;
-    <button title="columns" className="btn dropdown-toggle rose" type="button" data-toggle="dropdown" style={{ borderRadius: "30px", padding: "10px", borderColor: "rgb(119, 119, 119)" }}><i class="fa fa-columns" aria-hidden="true"></i>
+                        <button title="columns" className="btn dropdown-toggle rose" type="button" data-toggle="dropdown" style={{ borderRadius: "30px", padding: "10px", borderColor: "rgb(119, 119, 119)" }}><i class="fa fa-columns" aria-hidden="true"></i>
                         <i className="fa fa-sort-desc" aria-hidden="true"></i></button>
                       <ul className="dropdown-menu" style={{ right: "600px", left: "0px", width: "50px", top: "28px" }}>
                         <li style={{ borderBottom: "1px solid #eee" }}><a href="#"><input type="checkbox" checked />&nbsp;ROLE</a></li>
@@ -269,9 +271,7 @@ class Functions extends Component {
                               return <th key={key} className="text-left left1">{prop}</th>;
                           })}
                         </tr>
-
                       </thead>
-
                       <tbody>
                         {this.state.functionsData.map((prop, key) => {
                           return (
@@ -281,17 +281,16 @@ class Functions extends Component {
                               <td key={key} className="text-left left2">{prop[2]}</td>
                               <td className="text-right td-actions">
                                 <a rel="tooltip" title="View" className="btn btn-link btn-info table-action view" href="javascript:void(0)"><i className="fa fa-image" onClick
-                                ={() => { this.displaytext(key) }}></i></a>
+                                  ={() => { this.displaytext(key) }}></i></a>
                                 <a rel="tooltip" title="Edit" className="btn btn-link btn-warning table-action edit" href="javascript:void(0)"><i class="fa fa-edit" onClick={() => { this.displayedit(key) }}></i></a>
-                                <a rel="tooltip" title="Remove" className="btn btn-link btn-danger table-action remove" href="javascript:void(0)"><i className="fa fa-trash" onClick={()=>{this.displaywarn(key)}}></i></a>
-                                </td>
-                              
+                                <a rel="tooltip" title="Remove" className="btn btn-link btn-danger table-action remove" href="javascript:void(0)"><i className="fa fa-trash" onClick={() => { this.displaywarn(key) }}></i></a>
+                              </td>
+
                             </tr>
                           );
                         })}
                       </tbody>
                     </Table>
-
                   </div>
                 }
               />

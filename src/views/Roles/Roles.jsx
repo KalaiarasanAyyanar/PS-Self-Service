@@ -1,19 +1,18 @@
 import React, { Component } from "react";
-import { Grid, Row, Col, Table} from "react-bootstrap";
+import { Grid, Row, Col, Table } from "react-bootstrap";
 import "../Roles/Roles.css";
 import Card from "components/Card/Card.jsx";
 import "../Icons/Icons.css";
 import '../Icons/Icons.css';
 import swal from '@sweetalert/with-react'
-import OptionsForEdit from "../../components/OptionsForEdit/OptionsForEdit.jsx";
 import axios from 'axios';
 class TableList extends Component {
   constructor(...args) {
     super(...args);
     this.state = {
       icon: "fa fa-sort",
-      rolesData:[],
-      rolesHeader:[],
+      rolesData: [],
+      rolesHeader: [],
       alert: null
     }
     this.iconclick = this.iconclick.bind(this);
@@ -67,20 +66,18 @@ class TableList extends Component {
       });
   }
 
-  update(key,selectID1,selectID2) {
-    console.log("receive-->>",key,selectID1,selectID2)
-    let updateValue1=document.getElementById(selectID1);
-    updateValue1=updateValue1.options[updateValue1.selectedIndex].value
-    let updateValue2=document.getElementById(selectID2);
-    updateValue2=updateValue2.options[updateValue2.selectedIndex].value
+  update(key, selectID1, selectID2) {
+    console.log("receive-->>", key, selectID1, selectID2)
+    let updateValue1 = document.getElementById(selectID1).value;
+    let updateValue2 = document.getElementById(selectID2).value;
     // console.log("eee--->>>",e.options[e.selectedIndex].value);
     swal({
       title: "Updated",
       text: "The function is updated",
       icon: "success",
-      
+
     });
-    axios.get('http://localhost:3300/update/roles/'+key+'/'+updateValue1+'/'+updateValue2).then(
+    axios.get('http://localhost:3300/update/roles/' + key + '/' + updateValue1 + '/' + updateValue2).then(
       res => {
         console.log("delete->", res.data.rolesData)
         this.setState({
@@ -97,20 +94,20 @@ class TableList extends Component {
   }
 
   displayedit = (key) => {
-    let getElementIDs=["table1","table2"];
+    let getElementIDs = ["table1", "table2"];
     swal(
       <div>
         <h5 style={{ color: "grey", fontSize: "30px", paddingTop: "20px", textAlign: "left", paddingBottom: "10px" }}>Add Function</h5>
         <h5 style={{ textAlign: "left" }}>Role&nbsp;<span style={{ color: "red" }}>*</span></h5>
-        <OptionsForEdit array={this.state.rolesData} position={1} idForChild={getElementIDs[0]}></OptionsForEdit>
+        <input type="text" id={getElementIDs[0]} style={{ width: "100%", padding: "10px" }} defaultValue={this.state.rolesData[key][1]} />
         <h5 style={{ textAlign: "left" }}>Function&nbsp;<span style={{ color: "red" }}>*</span></h5>
-        <OptionsForEdit array={this.state.rolesData} position={2} idForChild={getElementIDs[1]}></OptionsForEdit>
-        <button className="outer" className="btn " style={{ float: "left", color: "white", backgroundColor: "#7cd1f9", marginTop: "30px", outline: "none", border: "none", marginBottom: "20px", width: "120px" }} onClick={()=>{this.update(key,getElementIDs[0],getElementIDs[1])}}>save</button>
+        <input type="text" id={getElementIDs[1]} style={{ width: "100%", padding: "10px" }} defaultValue={this.state.rolesData[key][2]} />
+        <button className="outer" className="btn " style={{ float: "left", color: "white", backgroundColor: "#7cd1f9", marginTop: "30px", outline: "none", border: "none", marginBottom: "20px", width: "120px" }} onClick={() => { this.update(key, getElementIDs[0], getElementIDs[1]) }}>save</button>
         <button className="inner" className="btn btn-danger" style={{ float: "right", color: "white", backgroundColor: "#fa1825", marginTop: "30px", marginBottom: "20px", width: "120px" }} onClick={this.canceled}>cancel</button>
       </div>, {
         buttons: false,
       }
-      )
+    )
   }
 
   oncheck(event) {
@@ -264,7 +261,7 @@ class TableList extends Component {
                       </thead>
 
                       <tbody>
-                      {
+                        {
                           this.state.rolesData.map((prop, key) => {
                             return (
                               <tr key={key}>
@@ -272,16 +269,16 @@ class TableList extends Component {
                                 <td className="text-left left1">{prop[1]}</td>
                                 <td className="text-left left2">{prop[2]}</td>
                                 <td className="text-right td-actions">
-                                <a rel="tooltip" title="View" className="btn btn-link btn-info table-action view" href="javascript:void(0)"><i className="fa fa-image" onClick
-                                ={() => { this.displaytext(key) }}></i></a>
-                                <a rel="tooltip" title="Edit" className="btn btn-link btn-warning table-action edit" href="javascript:void(0)"><i class="fa fa-edit" onClick={() => { this.displayedit(key) }}></i></a>
-                                <a rel="tooltip" title="Remove" className="btn btn-link btn-danger table-action remove" href="javascript:void(0)"><i className="fa fa-trash" onClick={()=>{this.displaywarn(key)}}></i></a>
+                                  <a rel="tooltip" title="View" className="btn btn-link btn-info table-action view" href="javascript:void(0)"><i className="fa fa-image" onClick
+                                    ={() => { this.displaytext(key) }}></i></a>
+                                  <a rel="tooltip" title="Edit" className="btn btn-link btn-warning table-action edit" href="javascript:void(0)"><i class="fa fa-edit" onClick={() => { this.displayedit(key) }}></i></a>
+                                  <a rel="tooltip" title="Remove" className="btn btn-link btn-danger table-action remove" href="javascript:void(0)"><i className="fa fa-trash" onClick={() => { this.displaywarn(key) }}></i></a>
                                 </td>
                               </tr>
                             );
                           })
                         }
-        
+
                       </tbody>
                     </Table>
                     <button style={{ marginLeft: "20px", outline: "none", borderRadius: "19px", padding: "7px", paddingLeft: "13px", border: "2px solid  #777777", backgroundColor: "white" }}><span>6<i className="fa fa-sort-asc" aria-hidden="true"></i></span>

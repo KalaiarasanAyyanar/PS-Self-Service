@@ -359,7 +359,6 @@ app.get("/update/:arrayName/:key/:data1/:data2", function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-  console.log("params->", req.params);
   switch (req.params.arrayName) {
     case "roles":
       variablesObject.rolesData[req.params.key][1] = req.params.data1;
