@@ -5,7 +5,6 @@ class OptionsForEdit extends React.Component{
     }
     render(){
         let temporaryArray=[];
-        console.log("data op-->>",this.props.array)
         return(
             <select required className="form-control" style={{ width: "100%", padding: "10px" }} id={this.props.idForChild}>
             {

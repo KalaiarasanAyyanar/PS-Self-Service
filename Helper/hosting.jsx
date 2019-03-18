@@ -369,7 +369,6 @@ app.get("/update/:arrayName/:key/:data1/:data2", function (req, res, next) {
       variablesObject.functionsData[req.params.key][2] = req.params.data2;
       break;
   }
-  // variablesObject.tdArray.splice(req.params.id,1);
   res.send(variablesObject)
 })
 
